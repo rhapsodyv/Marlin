@@ -21,130 +21,74 @@
  */
 #pragma once
 
-//JUST uncomment the option for your machine
-//#define V6_330_TITAN_TMC 1
-//#define V6_330_TITAN_NO_TMC 1
-//  #define V6_330_NO_TITAN_TMC 1
-//#define V6_330_NO_TITAN_NO_TMC 1
-// #define V6_400_TITAN_TMC 1
-// #define V6_400_NO_TITAN_TMC 1
-//#define V6_500_TITAN_TMC 1
+// 
+//  TRONXY CHITU BOARD MARLIN CONFIGURATION 
+//
+//  Below, you will find #define lines that match your model and options.
+//  Look through each line and select the options that pertain to
+//  your specific printer and motherboard. These will include the
+//  mainboard model and part number, stepper driver chip model, extruder
+//  model, and build plate size. Be sure to have one of each option enabled.
+//
 
-// #define V5_330_TITAN_TMC 1
-// #define V5_330_TITAN_NO_TMC 1
-// #define V5_330_NO_TITAN_TMC 1
-// #define V5_330_NO_TITAN_NO_TMC 1
-// #define XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL 1
 
-#if V6_330_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
-  #define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 330 Titan TMC"
+// V5 Motherboard (CXY-V5-180409)
+#define MOTHERBOARD BOARD_CHITU3D_V5
 
-#elif V6_330_TITAN_NO_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  //#define WITH_TMC 1
-  #define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 330 Titan"
+// V6 Motherboard (CXY-V6-191017)
+//  #define MOTHERBOARD BOARD_CHITU3D_V6
 
-#elif V6_330_NO_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
-  //#define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 330 TMC"
+// Uncomment #define if your motherboard has TMC drivers.
+//  #define WITH_TMC 1
 
-#elif V6_330_NO_TITAN_NO_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  //#define WITH_TMC 1
-  //#define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6"
-  
-#elif V6_400_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
-  #define WITH_TITAN 1
-  #define X_BED_SIZE 400
-  #define Y_BED_SIZE 400
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 400 Titan TMC"
+// Uncomment #define if your machine uses a Titan extruder
+#define WITH_TITAN 1
 
-#elif V6_400_NO_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
-  //#define WITH_TITAN 1
-  #define X_BED_SIZE 400
-  #define Y_BED_SIZE 400
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 400 TMC"
+// Uncomment #define to add a custom machine name. Change "Custom Name" to what you'd like.
+#define CUSTOM_MACHINE_NAME "Your Mom is"
 
-#elif V6_500_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
-  #define WITH_TITAN 1
-  #define X_BED_SIZE 500
-  #define Y_BED_SIZE 500
-  #define Z_MAX_POS 500
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 500 Titan TMC"
 
-#elif V5_330_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  #define WITH_TMC 1
-  #define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V5 330 Titan TMC"
+// Print Surface dimensions and kinematics. Uncomment each line under your model.
 
-#elif V5_330_TITAN_NO_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  //#define WITH_TMC 1
-  #define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V5 330 Titan"
+// X5SA,X5ST,X5S 330mm
+//  #define X_BED_SIZE 330
+//  #define Y_BED_SIZE 330
+//  #define Z_MAX_POS 400
+//  #define COREXY
 
-#elif V5_330_NO_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  #define WITH_TMC 1
-  //#define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V5 330 TMC"
+// X5SA,X5ST,X5S 400mm
+//  #define X_BED_SIZE 400
+//  #define Y_BED_SIZE 400
+//  #define Z_MAX_POS 400
+//  #define COREXY
 
-#elif V5_330_NO_TITAN_NO_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  //#define WITH_TMC 1
-  //#define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V5 330"
+// X5SA,X5ST,X5S 500mm
+//  #define X_BED_SIZE 500
+//  #define Y_BED_SIZE 500
+//  #define Z_MAX_POS 500
+//  #define COREXY
 
-#elif XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  //#define WITH_TMC 1
-  //#define WITH_TITAN 1
-  #define X_BED_SIZE 310
-  #define Y_BED_SIZE 310
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy XY3 310"
+// XY2
+//  #define X_BED_SIZE 220
+//  #define Y_BED_SIZE 220
+//  #define Z_MAX_POS 250
 
-#endif
+// XY2 Pro
+#define X_BED_SIZE 255
+#define Y_BED_SIZE 255
+#define Z_MAX_POS 260
+
+// XY3
+//  #define X_BED_SIZE 310
+//  #define Y_BED_SIZE 310
+//  #define Z_MAX_POS 400
+
+// XY3 Pro
+//  #define X_BED_SIZE 310
+//  #define Y_BED_SIZE 310
+//  #define Z_MAX_POS 400
+
+// END TRONXY CHITU BOARD MARLIN CONFIGURATION 
 
 /**
  * Configuration.h
@@ -217,7 +161,7 @@
 //#define SHOW_CUSTOM_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
-#define CUSTOM_STATUS_SCREEN_IMAGE
+// #define CUSTOM_STATUS_SCREEN_IMAGE
 
 // @section machine
 
@@ -734,10 +678,8 @@
 // @section machine
 
 // Uncomment one of these options to enable CoreXY, CoreXZ, or CoreYZ kinematics
-// either in the usual order or reversed
-#ifndef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
-#define COREXY
-#endif
+// either in the usual order or reversed. These should be enabled in the TRONXY CHITU MARLIN CONFIGURATION.
+//#define COREXY
 //#define COREXZ
 //#define COREYZ
 //#define COREYX
