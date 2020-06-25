@@ -45,7 +45,7 @@
 #define WITH_TITAN 1
 
 // Uncomment #define to add a custom machine name. Change "Custom Name" to what you'd like.
-#define CUSTOM_MACHINE_NAME "Your Mom is"
+#define CUSTOM_MACHINE_NAME "Custom Name"
 
 
 // Print Surface dimensions and kinematics. Uncomment each line under your model.
