@@ -29,17 +29,18 @@
 //  your specific printer and motherboard. These will include the
 //  mainboard model and part number, stepper driver chip model, extruder
 //  model, and build plate size. Be sure to have one of each option enabled.
+//  If you find that one of your stepper motors moves in the wrong
+//  direction, scroll to lines 1195-1197 for the motor direction settings.
 //
 
-
-// V5 Motherboard (CXY-V5-180409)
-#define MOTHERBOARD BOARD_CHITU3D_V5
+// V5 Motherboard (CXY-V5-180409) and V8 Motherboard (CXY-V8-190729)
+// #define MOTHERBOARD BOARD_CHITU3D_V5
 
 // V6 Motherboard (CXY-V6-191017)
-//  #define MOTHERBOARD BOARD_CHITU3D_V6
+#define MOTHERBOARD BOARD_CHITU3D_V6
 
 // Uncomment #define if your motherboard has TMC drivers.
-//  #define WITH_TMC 1
+#define WITH_TMC 1
 
 // Uncomment #define if your machine uses a Titan extruder
 #define WITH_TITAN 1
@@ -47,14 +48,13 @@
 // Uncomment #define to add a custom machine name. Change "Custom Name" to what you'd like.
 #define CUSTOM_MACHINE_NAME "Custom Name"
 
-
 // Print Surface dimensions and kinematics. Uncomment each line under your model.
 
 // X5SA,X5ST,X5S 330mm
-//  #define X_BED_SIZE 330
-//  #define Y_BED_SIZE 330
-//  #define Z_MAX_POS 400
-//  #define COREXY
+#define X_BED_SIZE 330
+#define Y_BED_SIZE 330
+#define Z_MAX_POS 400
+#define COREXY
 
 // X5SA,X5ST,X5S 400mm
 //  #define X_BED_SIZE 400
@@ -74,9 +74,9 @@
 //  #define Z_MAX_POS 250
 
 // XY2 Pro
-#define X_BED_SIZE 255
-#define Y_BED_SIZE 255
-#define Z_MAX_POS 260
+//  #define X_BED_SIZE 255
+//  #define Y_BED_SIZE 255
+//  #define Z_MAX_POS 260
 
 // XY3
 //  #define X_BED_SIZE 310
@@ -87,6 +87,11 @@
 //  #define X_BED_SIZE 310
 //  #define Y_BED_SIZE 310
 //  #define Z_MAX_POS 400
+
+// D01
+//  #define X_BED_SIZE 220
+//  #define Y_BED_SIZE 220
+//  #define Z_MAX_POS 220
 
 // END TRONXY CHITU BOARD MARLIN CONFIGURATION 
 
@@ -161,7 +166,7 @@
 //#define SHOW_CUSTOM_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
-// #define CUSTOM_STATUS_SCREEN_IMAGE
+#define CUSTOM_STATUS_SCREEN_IMAGE
 
 // @section machine
 
@@ -1186,19 +1191,10 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#ifdef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
-  #define INVERT_X_DIR false
-#else
-  #define INVERT_X_DIR true
-#endif
 
+#define INVERT_X_DIR true
 #define INVERT_Y_DIR true
-
-#ifdef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
-  #define INVERT_Z_DIR true
-#else
-  #define INVERT_Z_DIR false
-#endif
+#define INVERT_Z_DIR false
 
 // @section extruder
 
