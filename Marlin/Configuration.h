@@ -746,8 +746,24 @@
  * Default Axis Steps Per Unit (steps/mm)
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
+ *  aus config-export 
+ * M8009 S0.006250;x,y - 1/0.006250 = 160
+ * M8010 S0.001250;z   - 1/0.001250 = 800
+ * M8011 S0.001262;e   - 1/0.001262 = 797.39302694136929
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+#if WITH_TMC && WITH_TITAN
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 797.39 }
+#elif WITH_TMC && !WITH_TITAN
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 186 }
+#elif WITH_TITAN && !WITH_TMC
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 420 }
+#else
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+#endif
+
+// #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 420 }
+//TITAN EXTRUDER:
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 92.6 }
 
 /**
  * Default Max Feed Rate (mm/s)
