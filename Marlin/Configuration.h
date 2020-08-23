@@ -24,7 +24,7 @@
 //JUST uncomment the option for your machine
 //#define V6_330_TITAN_TMC 1
 //#define V6_330_TITAN_NO_TMC 1
-//  #define V6_330_NO_TITAN_TMC 1
+#define V6_330_NO_TITAN_TMC 1
 //#define V6_330_NO_TITAN_NO_TMC 1
 // #define V6_400_TITAN_TMC 1
 // #define V6_400_NO_TITAN_TMC 1
@@ -2336,15 +2336,15 @@
 //
 #define TOUCH_BUTTONS
 //DONE BY CHITU BOARD
-//#if ENABLED(TOUCH_BUTTONS)
-//  #define BUTTON_DELAY_EDIT  50 // (ms) Button repeat delay for edit screens
-//  #define BUTTON_DELAY_MENU 250 // (ms) Button repeat delay for menus
-//
-//  #define XPT2046_X_CALIBRATION   12316
-//  #define XPT2046_Y_CALIBRATION  -8981
-//  #define XPT2046_X_OFFSET       -43
-//  #define XPT2046_Y_OFFSET        257
-//#endif
+#if ENABLED(TOUCH_BUTTONS)
+  #define BUTTON_DELAY_EDIT  50 // (ms) Button repeat delay for edit screens
+  #define BUTTON_DELAY_MENU 250 // (ms) Button repeat delay for menus
+
+  #define XPT2046_X_CALIBRATION   12316
+  #define XPT2046_Y_CALIBRATION  -8981
+  #define XPT2046_X_OFFSET       -43
+  #define XPT2046_Y_OFFSET        257
+#endif
 
 // Change colors
 // some colors are predefined, see /src/lcd/dogm/u8g_dev_tft_480~.cpp Line 160
