@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -25,7 +25,7 @@
  * MKS Robin E3 & E3D (STM32F103RCT6) common board pin assignments
  */
 
-#ifndef __STM32F1__
+#if NOT_TARGET(__STM32F1__)
   #error "Oops! Select an STM32F1 board in 'Tools > Board.'"
 #endif
 
@@ -33,14 +33,13 @@
 
 //#define DISABLE_DEBUG
 #define DISABLE_JTAG
-#define ENABLE_SPI2
 
 //
 // EEPROM
 //
 #if EITHER(NO_EEPROM_SELECTED, FLASH_EEPROM_EMULATION)
   #define FLASH_EEPROM_EMULATION
-  #define EEPROM_PAGE_SIZE     (0x800U) // 2KB
+  #define EEPROM_PAGE_SIZE     (0x800U)           // 2KB
   #define EEPROM_START_ADDRESS (0x8000000UL + (STM32_FLASH_SIZE) * 1024UL - (EEPROM_PAGE_SIZE) * 2UL)
   #define MARLIN_EEPROM_SIZE    EEPROM_PAGE_SIZE  // 2KB
 #endif
@@ -84,10 +83,10 @@
    * Hardware serial communication ports.
    * If undefined software serial is used according to the pins below
    */
-  //#define X_HARDWARE_SERIAL  Serial1
-  //#define Y_HARDWARE_SERIAL  Serial1
-  //#define Z_HARDWARE_SERIAL  Serial1
-  //#define E0_HARDWARE_SERIAL Serial1
+  //#define X_HARDWARE_SERIAL  MSerial1
+  //#define Y_HARDWARE_SERIAL  MSerial1
+  //#define Z_HARDWARE_SERIAL  MSerial1
+  //#define E0_HARDWARE_SERIAL MSerial1
 
   //
   // Software serial
@@ -105,7 +104,7 @@
   #define E0_SERIAL_RX_PIN                  PC11
 
   // Reduce baud rate to improve software serial reliability
-  #define TMC_BAUD_RATE 19200
+  #define TMC_BAUD_RATE                    19200
 #endif
 
 //
@@ -133,7 +132,7 @@
  *                -----                                      -----                                     -----
  *                EXP1                                       EXP2                                      EXP3
  */
-#if HAS_SPI_LCD
+#if HAS_WIRED_LCD
 
   #define BEEPER_PIN                        PC1
   #define BTN_ENC                           PC3
@@ -152,12 +151,10 @@
     #define DOGLCD_SCK                      PB13
     #define DOGLCD_MOSI                     PB15
 
-    #undef SHOW_BOOTSCREEN
-
   #else
 
     #define LCD_PINS_D4                     PA6
-    #if ENABLED(ULTIPANEL)
+    #if IS_ULTIPANEL
       #define LCD_PINS_D5                   PA7
       #define LCD_PINS_D6                   PC4
       #define LCD_PINS_D7                   PC5
@@ -165,12 +162,12 @@
 
   #endif // !MKS_MINI_12864
 
-#endif // HAS_SPI_LCD
+#endif // HAS_WIRED_LCD
 
 //
 // SD Card
 //
-#define ENABLE_SPI2
+#define SPI_DEVICE                             2
 #define SD_DETECT_PIN                       PC10
 #define SCK_PIN                             PB13
 #define MISO_PIN                            PB14

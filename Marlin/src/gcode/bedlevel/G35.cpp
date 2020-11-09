@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -28,6 +28,10 @@
 #include "../../module/planner.h"
 #include "../../module/probe.h"
 #include "../../feature/bedlevel/bedlevel.h"
+
+#if HAS_MULTI_HOTEND
+  #include "../../module/tool_change.h"
+#endif
 
 #define DEBUG_OUT ENABLED(DEBUG_LEVELING_FEATURE)
 #include "../../core/debug_out.h"
@@ -75,10 +79,9 @@ static_assert(G35_PROBE_COUNT > 2, "TRAMMING_POINT_XY requires at least 3 XY pos
  *               51 - Counter-Clockwise M5
  **/
 void GcodeSuite::G35() {
-  if (DEBUGGING(LEVELING)) {
-    DEBUG_ECHOLNPGM(">>> G35");
-    log_machine_info();
-  }
+  DEBUG_SECTION(log_G35, "G35", DEBUGGING(LEVELING));
+
+  if (DEBUGGING(LEVELING)) log_machine_info();
 
   float z_measured[G35_PROBE_COUNT] = { 0 };
 
@@ -107,9 +110,8 @@ void GcodeSuite::G35() {
     tool_change(0, true);
   #endif
 
-  #if HAS_DUPLICATION_MODE
-    extruder_duplication_enabled = false;
-  #endif
+  // Disable duplication mode on homing
+  TERN_(HAS_DUPLICATION_MODE, set_duplication_enabled(false));
 
   // Home all before this procedure
   home_all_axes();
@@ -127,18 +129,20 @@ void GcodeSuite::G35() {
     const float z_probed_height = probe.probe_at_point(screws_tilt_adjust_pos[i], PROBE_PT_RAISE, 0, true);
 
     if (isnan(z_probed_height)) {
-      SERIAL_ECHOLNPAIR("G35 failed at point ", int(i), " (", tramming_point_name[i], ")"
-                        " X", screws_tilt_adjust_pos[i].x,
-                        " Y", screws_tilt_adjust_pos[i].y);
+      SERIAL_ECHOPAIR("G35 failed at point ", int(i), " (");
+      SERIAL_ECHOPGM_P((char *)pgm_read_ptr(&tramming_point_name[i]));
+      SERIAL_CHAR(')');
+      SERIAL_ECHOLNPAIR_P(SP_X_STR, screws_tilt_adjust_pos[i].x, SP_Y_STR, screws_tilt_adjust_pos[i].y);
       err_break = true;
       break;
     }
 
-    if (DEBUGGING(LEVELING))
-      DEBUG_ECHOLNPAIR("Probing point ", int(i), " (", tramming_point_name[i], ")"
-                       " X", screws_tilt_adjust_pos[i].x,
-                       " Y", screws_tilt_adjust_pos[i].y,
-                       " Z", z_probed_height);
+    if (DEBUGGING(LEVELING)) {
+      DEBUG_ECHOPAIR("Probing point ", int(i), " (");
+      DEBUG_PRINT_P((char *)pgm_read_ptr(&tramming_point_name[i]));
+      DEBUG_CHAR(')');
+      DEBUG_ECHOLNPAIR_P(SP_X_STR, screws_tilt_adjust_pos[i].x, SP_Y_STR, screws_tilt_adjust_pos[i].y, SP_Z_STR, z_probed_height);
+    }
 
     z_measured[i] = z_probed_height;
   }
@@ -155,10 +159,11 @@ void GcodeSuite::G35() {
       const float decimal_part = adjust - float(full_turns);
       const int minutes = trunc(decimal_part * 60.0f);
 
-      SERIAL_ECHOPAIR("Turn ", tramming_point_name[i],
-             " ", (screw_thread & 1) == (adjust > 0) ? "Counter-Clockwise" : "Clockwise",
-             "by ", abs(full_turns), " turns");
+      SERIAL_ECHOPGM("Turn ");
+      SERIAL_ECHOPGM_P((char *)pgm_read_ptr(&tramming_point_name[i]));
+      SERIAL_ECHOPAIR(" ", (screw_thread & 1) == (adjust > 0) ? "CCW" : "CW", " by ", abs(full_turns), " turns");
       if (minutes) SERIAL_ECHOPAIR(" and ", abs(minutes), " minutes");
+      if (ENABLED(REPORT_TRAMMING_MM)) SERIAL_ECHOPAIR(" (", -diff, "mm)");
       SERIAL_EOL();
     }
   }
@@ -179,12 +184,10 @@ void GcodeSuite::G35() {
   probe.stow();
 
   // After this operation the Z position needs correction
-  set_axis_not_trusted(Z_AXIS);
+  set_axis_never_homed(Z_AXIS);
 
   // Home Z after the alignment procedure
   process_subcommands_now_P(PSTR("G28Z"));
-
-  if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPGM("<<< G35");
 }
 
 #endif // ASSISTED_TRAMMING
