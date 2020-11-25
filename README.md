@@ -1,5 +1,7 @@
 # This repository is just a copy of the official Marlin, with Tronxy X5SA (and variants) pre-configured.
 
+_Right now, this repo don't work with marlin auto build_
+
 ## JUST uncomment the option for your machine
 ```cpp
 // #define V6_330_TITAN_TMC 1
@@ -15,6 +17,9 @@
 // #define V5_330_NO_TITAN_TMC 1
 // #define V5_330_NO_TITAN_NO_TMC 1
 // #define XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL 1
+
+//to use the new UI
+#define TFT_LVGL_UI
 ```
 
 # Marlin 3D Printer Firmware
