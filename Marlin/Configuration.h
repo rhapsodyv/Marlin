@@ -27,7 +27,7 @@
 //  #define V6_330_NO_TITAN_TMC 1
 //#define V6_330_NO_TITAN_NO_TMC 1
 // #define V6_400_TITAN_TMC 1
-// #define V6_400_NO_TITAN_TMC 1
+#define V6_400_NO_TITAN_TMC 1
 //#define V6_500_TITAN_TMC 1
 
 // #define V5_330_TITAN_TMC 1
