@@ -24,7 +24,7 @@
 //JUST uncomment the option for your machine
 // #define V6_330_TITAN_TMC 1
 // #define V6_330_TITAN_NO_TMC 1
-// #define V6_330_NO_TITAN_TMC 1
+#define V6_330_NO_TITAN_TMC 1
 // #define V6_330_NO_TITAN_NO_TMC 1
 // #define V6_400_TITAN_TMC 1
 // #define V6_400_NO_TITAN_TMC 1
@@ -57,7 +57,7 @@
 
 // #define TFT_LVGL_UI
 // #define TFT_CLASSIC_UI
-// #define TFT_COLOR_UI
+#define TFT_COLOR_UI
 
 #if V6_330_TITAN_TMC
   #define MOTHERBOARD BOARD_CHITU3D_V6
@@ -86,7 +86,7 @@
   #define X_BED_SIZE 330
   #define Y_BED_SIZE 330
   #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 330 TMC"
+  #define CUSTOM_MACHINE_NAME "Tronxy X5SA-PRO V6 330 TMC"
   #define COREXY
 
 #elif V6_330_NO_TITAN_NO_TMC
@@ -1090,7 +1090,7 @@
 #elif WITH_TMC && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764 }
 #elif WITH_TMC && !WITH_TITAN && !WITH_BMG
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 186 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 275 }
 #elif WITH_TITAN && !WITH_TMC
   #if defined(T2_LEADSCREW)
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 420 }
@@ -1434,7 +1434,7 @@
  * These options are most useful for the BLTouch probe, but may also improve
  * readings with inductive probes and piezo sensors.
  */
-//#define PROBING_HEATERS_OFF       // Turn heaters off when probing
+#define PROBING_HEATERS_OFF       // Turn heaters off when probing
 #if ENABLED(PROBING_HEATERS_OFF)
   //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
 #endif
