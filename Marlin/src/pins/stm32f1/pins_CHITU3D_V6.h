@@ -56,7 +56,8 @@
 //
 #define X_STOP_PIN                          PG10
 #define Y_STOP_PIN                          PA12
-#define Z_STOP_PIN                          PG9
+#define Z_STOP_PIN                          PA14//PG9
+//#define Z_STOP_ONPCB_PIN                    PA14
 
 //
 // Steppers
@@ -108,7 +109,8 @@
 //#define LED_PIN                           PD3
 //#define POWER_LOSS_PIN                    PG2   // PG4 PW_DET
 #define FIL_RUNOUT_PIN                      PA15  // MT_DET
-
+#define SERVO0_PIN                            PA2 //PA2
+#define SERVO0                                PA2
 //
 // TronXY TFT Support
 //
