@@ -85,8 +85,8 @@
   #define MOTHERBOARD BOARD_CHITU3D_V6
   #define WITH_TMC 1
   //#define WITH_TITAN 1
-  #define X_BED_SIZE 380
-  #define Y_BED_SIZE 380
+  #define X_BED_SIZE 400
+  #define Y_BED_SIZE 365
   #define Z_MAX_POS 400
   #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 400 TMC"
 
@@ -704,7 +704,7 @@
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 200
+#define EXTRUDE_MAXLENGTH 800
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -1071,7 +1071,7 @@
 //#define PROBING_FANS_OFF // *option
 #define PROBING_MARGIN 22
 
-#define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z / 5
+#define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z / 4
 #define Z_CLEARANCE_DEPLOY_PROBE 15 // set up at least 10
 #define Z_CLEARANCE_BETWEEN_PROBES 5 // set up at least 5
 
@@ -1831,7 +1831,7 @@
  *
  * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek', 'el_gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ru':'Russian', 'sk':'Slovak', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)', 'test':'TEST' }
  */
-#define LCD_LANGUAGE en
+#define LCD_LANGUAGE de
 
 /**
  * LCD Character Set
