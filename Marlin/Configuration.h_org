@@ -24,7 +24,7 @@
 //JUST uncomment the option for your machine
 // #define V6_330_TITAN_TMC 1
 // #define V6_330_TITAN_NO_TMC 1
-#define V6_330_NO_TITAN_TMC 1
+// #define V6_330_NO_TITAN_TMC 1
 // #define V6_330_NO_TITAN_NO_TMC 1
 // #define V6_400_TITAN_TMC 1
 // #define V6_400_NO_TITAN_TMC 1
@@ -845,12 +845,9 @@
   #else
     // If we did not set specific parameters then we use one of the default one
     #ifndef DEFAULT_Kp
-      //#define DEFAULT_Kp  22.20
-      //#define DEFAULT_Ki   1.08
-      //#define DEFAULT_Kd 114.00
-      #define DEFAULT_Kp  19.93
-      #define DEFAULT_Ki   1.40
-      #define DEFAULT_Kd  70.70
+      #define DEFAULT_Kp  22.20
+      #define DEFAULT_Ki   1.08
+      #define DEFAULT_Kd 114.00
     #endif
   #endif
 #endif // PIDTEMP
@@ -872,7 +869,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-#define PIDTEMPBED
+//#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -997,7 +994,7 @@
 
 // Enable one of the options below for CoreXY, CoreXZ, or CoreYZ kinematics,
 // either in the usual order or reversed
-#define COREXY
+//#define COREXY
 //#define COREXZ
 //#define COREYZ
 //#define COREYX
@@ -1193,7 +1190,7 @@
   #endif
 #endif
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 194 }
+// #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 420 }
 //TITAN EXTRUDER:
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 92.6 }
 
@@ -1284,8 +1281,6 @@
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
 // #define S_CURVE_ACCELERATION
-//# in Verbindung mit LIN-Advanced sollte S_CURVE_ACCELERATION deaktiviert werden -> BUG
-//# LIN_ADVANCED ist in Configuration_adh.h 
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -2942,7 +2937,7 @@
  *   root of your SD card, together with the compiled firmware.
  */
 //#define TFT_CLASSIC_UI
-#define TFT_COLOR_UI
+//#define TFT_COLOR_UI
 //#define TFT_LVGL_UI
 
 #if ENABLED(TFT_LVGL_UI)
